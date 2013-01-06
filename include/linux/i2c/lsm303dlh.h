@@ -39,6 +39,12 @@
 #define	LSM303DLH_MAG_DEV_NAME	"lsm303dlh_mag_sysfs"
 
 
+#define LSM303DLH_ACC_MIN_POLL_PERIOD_MS 1
+#define LSM303DLH_MAG_MIN_POLL_PERIOD_MS 5
+
+#define LSM303DLH_ACC_DEFAULT_INT1_GPIO (-EINVAL)
+#define LSM303DLH_ACC_DEFAULT_INT2_GPIO (-EINVAL)
+
 
 /************************************************/
 /* 	Accelerometer section defines	 	*/
