@@ -52,9 +52,10 @@
  * The PLL hardware is capable of 384MHz to 1536MHz. The L_VALs
  * used for calibration should respect these limits. */
 #define L_VAL_SCPLL_CAL_MIN	0x08 /* =  432 MHz with 27MHz source */
-#define L_VAL_SCPLL_CAL_MAX	0x21 /* = 1512 MHz with 27MHz source */
+#define L_VAL_SCPLL_CAL_MAX	0x28 /* = 2160 MHz with 27MHz source */
 
-#define MAX_VDD_SC		1350000 /* uV */
+#define MAX_VDD_SC		1425000 /* uV */
+#define MIN_VDD_SC		700000 /* uV */
 #define MAX_AXI			 310500 /* KHz */
 #define SCPLL_LOW_VDD_FMAX	 594000 /* KHz */
 #define SCPLL_LOW_VDD		1000000 /* uV */
@@ -200,8 +201,9 @@ static struct clkctl_l2_speed l2_freq_tbl_v2[] = {
 	[17] = {1296000,  1, 0x18, 1200000, 1225000, 3},
 	[18] = {1350000,  1, 0x19, 1200000, 1225000, 3},
 	[19] = {1404000,  1, 0x1A, 1200000, 1250000, 3},
-	[20] = {1458000,  1, 0x1B, 1200000, 1250000, 3},
-	[21] = {1512000,  1, 0x1C, 1200000, 1275000, 3},
+	[20] = {1458000,  1, 0x1B, 1225000, 1275000, 4},//4=L2 boost, unstable @ high clocks, therefore disabled over 1674mhz
+	[21] = {1512000,  1, 0x1C, 1225000, 1275000, 3},
+	[22] = {1566000,  1, 0x1D, 1225000, 1275000, 3},
 };
 
 #define L2(x) (&l2_freq_tbl_v2[(x)])
@@ -232,7 +234,12 @@ static struct clkctl_acpu_speed acpu_freq_tbl_1188mhz[] = {
   { {1, 1}, 1620000,  ACPU_SCPLL, 0, 0, 1, 0x1E, L2(20), 1275000, 0x03006000},
   { {1, 1}, 1728000,  ACPU_SCPLL, 0, 0, 1, 0x20, L2(20), 1300000, 0x03006000},
   { {1, 1}, 1782000,  ACPU_SCPLL, 0, 0, 1, 0x21, L2(20), 1350000, 0x03006000},
-
+  { {1, 1}, 1836000,  ACPU_SCPLL, 0, 0, 1, 0x1E, L2(21), 1337500, 0x03006000},
+  { {1, 1}, 1890000,  ACPU_SCPLL, 0, 0, 1, 0x1F, L2(21), 1350000, 0x03006000},
+  { {1, 1}, 1914000,  ACPU_SCPLL, 0, 0, 1, 0x20, L2(22), 1375000, 0x03006000},
+  { {1, 1}, 2022000,  ACPU_SCPLL, 0, 0, 1, 0x21, L2(22), 1400000, 0x03006000},
+  { {1, 1}, 2103000,  ACPU_SCPLL, 0, 0, 1, 0x22, L2(22), 1425000, 0x03006000},
+  { {1, 1}, 2157000,  ACPU_SCPLL, 0, 0, 1, 0x23, L2(22), 1425000, 0x03006000},
   { {0, 0}, 0 },
 };
 
@@ -920,7 +927,7 @@ static unsigned int __init select_freq_plan(void)
 
 	if (speed_bin == 0x1) {
 #endif
-		max_khz = 1782000;
+		max_khz = 2157000;
 #ifndef CONFIG_MSM_FORCE_FAST_CPU_TABLE
 		pvs = (pte_efuse >> 10) & 0x7;
 		if (pvs == 0x7)
@@ -949,7 +956,7 @@ static unsigned int __init select_freq_plan(void)
 		}
 #ifndef CONFIG_MSM_FORCE_FAST_CPU_TABLE
 	} else {
-		max_khz = 1782000;
+		max_khz = 2157000;
 		acpu_freq_tbl = acpu_freq_tbl_1188mhz;
 	}
 #endif
