@@ -358,10 +358,10 @@ extern struct cpufreq_governor cpufreq_gov_userspace;
 extern struct cpufreq_governor cpufreq_gov_ondemand;
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_ondemand)
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_BADASS)
-extern struct cpufreq_governor cpufreq_gov_badass;
+extern struct cpufreq_governor cpufreq_gov_bds;
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_bds)
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_LAGFREE)
-extern struct cpufreq_governor cpufreq_gov_lagfree;
+extern struct cpufreq_governor cpufreq_gov_dbs;
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_dbs)
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_CONSERVATIVE)
 extern struct cpufreq_governor cpufreq_gov_conservative;
