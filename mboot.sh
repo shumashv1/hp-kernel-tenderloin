@@ -2,11 +2,12 @@
 
 # get current path
 
-$TOPDIR=`pwd`
+TOPDIR=`pwd`
 now=$(date +"%m_%d_%Y")
 
-#make ARCH=arm tenderloin_android_defconfig
-#make ARCH=arm -j16 CROSS_COMPILE=~/CodeSourcery/Sourcery_G++_Lite/bin/arm-none-eabi- uImage
+make ARCH=arm tenderloin_android_defconfig
+make ARCH=arm -j16 CROSS_COMPILE=~/CodeSourcery/Sourcery_G++_Lite/bin/arm-none-eabi- uImage
+
 cp ~/android/hp-kernel-tenderloin/arch/arm/boot/uImage ~/android/moboot/tools/uImage
 cd ~/android/moboot/tools
 rm -f uImage.CyanogenMod.new
@@ -19,4 +20,4 @@ cp -f uImage.CyanogenMod.new boot.img
 zip -f OC320-2157MHz_Kernel.zip
 cp OC320-2157MHz_Kernel.zip $1_OC320-2157MHz_Kernel_$now.zip 
 
-#cd $TOPDIR
+cd $TOPDIR
