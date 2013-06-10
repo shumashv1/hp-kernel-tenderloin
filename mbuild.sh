@@ -5,8 +5,8 @@
 TOPDIR=`pwd`
 now=$(date +"%m_%d_%Y")
 
-make ARCH=arm tenderloin_android_defconfig
-make ARCH=arm -j16 CROSS_COMPILE=~/CodeSourcery/Sourcery_G++_Lite/bin/arm-none-eabi- uImage
+#make ARCH=arm tenderloin_android_defconfig
+#make ARCH=arm -j16 CROSS_COMPILE=~/CodeSourcery/Sourcery_G++_Lite/bin/arm-none-eabi- uImage
 
 cp ~/android/hp-kernel-tenderloin/arch/arm/boot/uImage ~/android/moboot/tools/uImage
 cd ~/android/moboot/tools
