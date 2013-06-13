@@ -18,6 +18,7 @@
 #include <linux/bio.h>
 #include <linux/module.h>
 #include <linux/init.h>
+#include <linux/slab.h>
 #include <linux/version.h>
 
 enum { ASYNC, SYNC };
