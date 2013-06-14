@@ -6,7 +6,7 @@ TOPDIR=`pwd`
 now=$(date +"%m_%d_%Y")
 
 make ARCH=arm tenderloin_android_defconfig
-make ARCH=arm -j16 CROSS_COMPILE=~/android/skz/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/arm-eabi- uImage
+make ARCH=arm CROSS_COMPILE=~/android/skz/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/arm-eabi- uImage
 
 cp ~/android/hp-kernel-tenderloin/arch/arm/boot/uImage ~/android/moboot/tools/uImage
 cd ~/android/moboot/tools
@@ -21,8 +21,7 @@ zip -d OC320-2157MHz_Kernel.zip boot.img
 zip -u OC320-2157MHz_Kernel.zip boot.img
 cp OC320-2157MHz_Kernel.zip $1_OC320-2157MHz_Kernel_$now.zip 
 
-if ($2 == y)
-then
+if ["$2" == "y"]; then
  cp ~/android/hp-kernel-tenderloin/arch/arm/boot/uImage ~/android/skz/device/hp/tenderloin/prebuilt/boot/kernel
 fi
 
