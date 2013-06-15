@@ -21,7 +21,7 @@ zip -d OC320-2157MHz_Kernel.zip boot.img
 zip -u OC320-2157MHz_Kernel.zip boot.img
 cp OC320-2157MHz_Kernel.zip $1_OC320-2157MHz_Kernel_$now.zip 
 
-if ["$2" == "y"]; then
+if [$2 == y]; then
  cp ~/android/hp-kernel-tenderloin/arch/arm/boot/uImage ~/android/skz/device/hp/tenderloin/prebuilt/boot/kernel
 fi
 
