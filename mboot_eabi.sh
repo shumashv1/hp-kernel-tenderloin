@@ -6,7 +6,7 @@ TOPDIR=`pwd`
 now=$(date +"%m_%d_%Y")
 
 make ARCH=arm tenderloin_android_defconfig
-make ARCH=arm CROSS_COMPILE=~/android/skz/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/arm-eabi- uImage
+make ARCH=arm CROSS_COMPILE=/home/shumash/android/skz/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/arm-eabi- uImage
 
 cp ~/android/hp-kernel-tenderloin/arch/arm/boot/uImage ~/android/moboot/tools/uImage
 cd ~/android/moboot/tools
