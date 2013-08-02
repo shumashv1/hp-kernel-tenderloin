@@ -153,6 +153,19 @@ static int kgsl_pwrctrl_gpuclk_show(struct device *dev,
 			pwr->pwrlevels[pwr->active_pwrlevel].gpu_freq);
 }
 
+static int kgsl_pwrctrl_max_gpuclk_show(struct device *dev,
+					struct device_attribute *attr,
+					char *buf)
+{
+	struct kgsl_device *device = kgsl_device_from_dev(dev);
+	struct kgsl_pwrctrl *pwr;
+	if (device == NULL)
+		return 0;
+	pwr = &device->pwrctrl;
+	return snprintf(buf, PAGE_SIZE, "%d\n",
+			pwr->pwrlevels[pwr->thermal_pwrlevel].gpu_freq);
+}
+
 static int kgsl_pwrctrl_pwrnap_store(struct device *dev,
 				     struct device_attribute *attr,
 				     const char *buf, size_t count)
@@ -309,6 +322,11 @@ static struct device_attribute gpubusy_attr = {
 	.show = kgsl_pwrctrl_gpubusy_show,
 };
 
+static struct device_attribute max_gpuclk_attr = {
+	.attr = { .name = "max_gpuclk", .mode = 0644, },
+	.show = kgsl_pwrctrl_max_gpuclk_show,
+};
+
 int kgsl_pwrctrl_init_sysfs(struct kgsl_device *device)
 {
 	int ret = 0;
@@ -321,6 +339,8 @@ int kgsl_pwrctrl_init_sysfs(struct kgsl_device *device)
 		ret = device_create_file(device->dev, &scaling_governor_attr);
 	if (ret == 0)
 		ret = device_create_file(device->dev, &gpubusy_attr);
+	if (ret == 0)
+		ret = device_create_file(device->dev, &max_gpuclk_attr);
 	return ret;
 }
 
