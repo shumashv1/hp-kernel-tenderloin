@@ -158,30 +158,7 @@ static int kgsl_pwrctrl_gpuclk_store(struct device *dev,
 				     struct device_attribute *attr,
 				     const char *buf, size_t count)
 {
-	char temp[20];
-	int i, delta = 5000000;
-	unsigned long val;
-	struct kgsl_device *device = kgsl_device_from_dev(dev);
-	struct kgsl_pwrctrl *pwr = &device->pwrctrl;
-
-	snprintf(temp, sizeof(temp), "%.*s",
-			 (int)min(count, sizeof(temp) - 1), buf);
-	strict_strtoul(temp, 0, &val);
-
-	mutex_lock(&device->mutex);
-	/* Find the best match for the requested freq, if it exists */
-
-	for (i = 0; i < pwr->num_pwrlevels; i++)
-		if (abs(pwr->pwrlevels[i].gpu_freq - val) < delta) {
-			pwr->thermal_pwrlevel = i;
-			break;
-		}
-
-	kgsl_pwrctrl_pwrlevel_change(device, i);
-
-	mutex_unlock(&device->mutex);
-
-	return count;
+	return __gpuclk_store(0, dev, attr, buf, count);
 }
 
 static int kgsl_pwrctrl_gpuclk_show(struct device *dev,
