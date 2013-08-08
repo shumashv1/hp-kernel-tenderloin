@@ -1632,13 +1632,8 @@ static struct isl29023_platform_data isl29023_pdata = {
 };
 
 static struct lsm303dlh_acc_platform_data lsm303dlh_acc_pdata = {
-<<<<<<< HEAD
-	.poll_interval = 50,
+	.poll_interval = 200,
 	.min_interval = 10,
-=======
-	.poll_interval = 100,
-	.min_interval = LSM303DLH_ACC_MIN_POLL_PERIOD_MS,
->>>>>>> f57e0c9... Update MPU3050 kernel driver
 	.g_range = LSM303DLH_ACC_G_2G,
 	.axis_map_x = 0,
 	.axis_map_y = 1,
@@ -1651,13 +1646,8 @@ static struct lsm303dlh_acc_platform_data lsm303dlh_acc_pdata = {
 };
 
 static struct lsm303dlh_mag_platform_data lsm303dlh_mag_pdata = {
-<<<<<<< HEAD
-	.poll_interval = 50,
-	.min_interval = 10,
-=======
 	.poll_interval = 100,
 	.min_interval = LSM303DLH_MAG_MIN_POLL_PERIOD_MS,
->>>>>>> f57e0c9... Update MPU3050 kernel driver
 	.h_range = LSM303DLH_MAG_H_8_1G,
 	.axis_map_x = 0,
 	.axis_map_y = 1,
@@ -4826,22 +4816,14 @@ static void fixup_i2c_configs(void)
 
 	if (machine_is_tenderloin() && boardtype_is_3g()) {
 #ifdef CONFIG_INPUT_LSM303DLH
-<<<<<<< HEAD
 		lsm303dlh_acc_pdata.negate_y = 1;
-=======
-		lsm303dlh_acc_pdata.negate_x = 1;
->>>>>>> f57e0c9... Update MPU3050 kernel driver
 		lsm303dlh_acc_pdata.negate_z = 1;
 		lsm303dlh_mag_pdata.negate_x = 1;
 		lsm303dlh_mag_pdata.negate_z = 1;
 #endif
 		mpu_pdata.orientation[0] = -mpu_pdata.orientation[0];
 		mpu_pdata.orientation[8] = -mpu_pdata.orientation[8];
-<<<<<<< HEAD
 		mpu_pdata.accel.orientation[1] = -mpu_pdata.accel.orientation[1];
-=======
-		mpu_pdata.accel.orientation[0] = -mpu_pdata.accel.orientation[0];
->>>>>>> f57e0c9... Update MPU3050 kernel driver
 		mpu_pdata.accel.orientation[8] = -mpu_pdata.accel.orientation[8];
 		mpu_pdata.compass.orientation[0] = -mpu_pdata.compass.orientation[0];
 		mpu_pdata.compass.orientation[8] = -mpu_pdata.compass.orientation[8];
