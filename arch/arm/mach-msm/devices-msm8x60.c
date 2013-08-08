@@ -733,16 +733,25 @@ static struct kgsl_device_platform_data kgsl_3d0_pdata = {
 				.bus_freq = 2,
 			},
 			{
+				.gpu_freq = 300000000,
+				.bus_freq = 2,
+			},
+			{
+				.gpu_freq = 266667000,
+				.bus_freq = 2,
+			},
+			{
 				.gpu_freq = 228571000,
 				.bus_freq = 1,
 			},
 			{
-				.gpu_freq = 266667000,
+				.gpu_freq = 200000000,
 				.bus_freq = 0,
 			},
  		},
-	.init_level = 0,
-	.num_levels = 3,
+	.init_level = 2,
+	.max_level = 2,
+	.num_levels = 5,
 	.set_grp_async = NULL,
 	.idle_timeout = HZ/5,
 #ifdef CONFIG_MSM_BUS_SCALING
@@ -792,16 +801,21 @@ static struct kgsl_device_platform_data kgsl_2d0_pdata = {
 	.pwr_data = {
 		.pwrlevel = {
 			{
-				.gpu_freq = 320000000,
+				.gpu_freq = 266667000,
 				.bus_freq = 1,
 			},
 			{
 				.gpu_freq = 228571000,
+				.bus_freq = 1,
+			},
+			{
+				.gpu_freq = 200000000,
 				.bus_freq = 0,
 			},
  		},
-		.init_level = 0,
-		.num_levels = 2,
+		.init_level = 1,
+		.max_level = 1,
+		.num_levels = 3,
 		.set_grp_async = NULL,
 		.idle_timeout = HZ/10,
 #ifdef CONFIG_MSM_BUS_SCALING

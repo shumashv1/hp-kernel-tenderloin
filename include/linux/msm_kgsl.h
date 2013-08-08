@@ -163,6 +163,7 @@ struct kgsl_grp_clk_name {
 struct kgsl_device_pwr_data {
 	struct kgsl_pwrlevel pwrlevel[KGSL_MAX_PWRLEVELS];
 	int init_level;
+	int max_level;
 	int num_levels;
 	int (*set_grp_async)(void);
 	unsigned int idle_timeout;
