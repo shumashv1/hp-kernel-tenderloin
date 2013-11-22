@@ -7,7 +7,10 @@ ifdef CONFIG_DEBUG_FS
 	hid-objs		+= hid-debug.o
 endif
 
-obj-$(CONFIG_HID)		+= hid.o
+ obj-$(CONFIG_HID)		+= hid.o
+ obj-$(CONFIG_UHID)		+= uhid.o
+
+ obj-$(CONFIG_HID_GENERIC)	+= hid-generic.o
 
 hid-$(CONFIG_HIDRAW)		+= hidraw.o
 
